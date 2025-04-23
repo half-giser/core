@@ -11,8 +11,10 @@ interface CustomMatchers<R = unknown> {
   toHaveBeenWarnedTimes(n: number): R
 }
 
+// 改变测试框架的全局变量 globalThis OR window in happy-dom/jsdom environment
 vi.stubGlobal('MathMLElement', class MathMLElement {})
 
+// 创建新的 Test Matchers，这些 matchers 的作用跟框架自带的 not/toBe...... 作用相同
 expect.extend({
   toHaveBeenWarned(received: string) {
     const passed = warn.mock.calls.some(args => args[0].includes(received))
@@ -89,6 +91,7 @@ beforeEach(() => {
 
 afterEach(() => {
   const assertedArray = Array.from(asserted)
+  // mock.calls 是每次调用函数时，调用的形参
   const nonAssertedWarnings = warn.mock.calls
     .map(args => args[0])
     .filter(received => {

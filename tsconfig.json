@@ -19,6 +19,7 @@
     "removeComments": false,
     "jsx": "preserve",
     "lib": ["es2016", "dom"],
+    // vitest/globals 说明 Typescript 能配合vitest 全局 API 进行使用
     "types": ["vitest/globals", "puppeteer", "node"],
     "rootDir": ".",
     "paths": {

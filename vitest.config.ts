@@ -22,8 +22,10 @@ export default defineConfig({
     alias: entries,
   },
   test: {
+    // 支持全局引入 vitest api(vi,expect,......)
     globals: true,
     pool: 'threads',
+    // 运行测试文件之前，会执行本启动脚本
     setupFiles: 'scripts/setup-vitest.ts',
     environmentMatchGlobs: [
       ['packages/{vue,vue-compat,runtime-dom}/**', 'jsdom'],
